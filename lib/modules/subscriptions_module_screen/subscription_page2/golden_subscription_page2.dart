@@ -95,7 +95,7 @@ class GoldenNext extends StatelessWidget {
                       width: 2.w,
                     ),
 
-                    Container(
+                    SizedBox(
                       // color: Colors.black,
                       height: 14.h,
                       width: 62.w,
@@ -294,7 +294,7 @@ class GoldenNext extends StatelessWidget {
 
               Padding(
                 padding:  EdgeInsets.symmetric(horizontal: 2.w),
-                child: Container(
+                child: SizedBox(
                   height: 24.h,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

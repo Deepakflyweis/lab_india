@@ -1,7 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lab_india/api_providers/api_client.dart';
-import 'package:lab_india/api_providers/provider/user_endpoint.dart';
 import 'package:lab_india/common_widgets/buttons/rec_button.dart';
 import 'package:lab_india/common_widgets/text_feilds/basic_text_feild.dart';
 import 'package:lab_india/controllers/sign_up_controller.dart';
@@ -14,9 +14,8 @@ import '../../constants/app_text_styles.dart';
 import '../../constants/app_texts.dart';
 
 class SignUp1Screen extends StatelessWidget {
-    SignUp1Screen({Key? key}) : super(key: key);
-
-    SignUpController signUpController = Get.put(SignUpController());
+  SignUp1Screen({Key? key}) : super(key: key);
+  SignUpController signUpController = Get.put(SignUpController());
 
   @override
   Widget build(BuildContext context) {
@@ -35,22 +34,35 @@ class SignUp1Screen extends StatelessWidget {
             child: Column(
               children: [
                 const Spacer(),
-                Stack(
-                  children: [
-                    CircleAvatar(
-                      radius: 15.w,
-                      backgroundColor: Colors.transparent,
-                      child: Image.asset('assets/images/profile_placeholder.png'),
-                    ),
-                    Positioned(
-                        right: 0,
-                        child: Icon(
-                          Icons.add_circle,
-                          size: 25.sp,
-                          color: AppColors.primaryColor,
-                        ))
-                  ],
-                ),
+                GestureDetector(
+                    onTap: () => signUpController.showPicker(context),
+                    child: Stack(
+                      fit: StackFit.loose,
+                      children: [
+                        ClipOval(
+                          child: Obx(
+                            () => signUpController.image.value.path == ""
+                                ? Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Icon(Icons.image),
+                                  )
+                                : Image.file(
+                                    signUpController.image.value,
+                                    width: 25.w,
+                                    filterQuality: FilterQuality.high,
+                                    fit: BoxFit.cover,
+                                  ),
+                          ),
+                        ),
+                        Positioned(
+                            right: 0,
+                            child: Icon(
+                              Icons.add_circle,
+                              size: 25.sp,
+                              color: AppColors.primaryColor,
+                            )),
+                      ],
+                    )),
                 Spacer(),
                 Align(
                   alignment: Alignment.centerLeft,
@@ -59,39 +71,56 @@ class SignUp1Screen extends StatelessWidget {
                     style: AppTextStyles.grey12,
                   ),
                 ),
-                Form(
-                  key: signUpController.fnameFormKey,
-                  child: BasicTextField(
-                      hint: AppTexts.firstNameHint, label: AppTexts.firstName, controller: signUpController.fname,),
+                BasicTextField(
+                  hint: AppTexts.firstNameHint,
+                  label: AppTexts.firstName,
+                  controller: signUpController.fname,
+                  validator: (val) {
+                    if (val == null) {
+                      return "Enter Data";
+                    }
+                  },
                 ),
-                Form(
-                  key: signUpController.lnameFormKey,
-                  child: BasicTextField(
-                      controller: signUpController.lname,
-                      hint: AppTexts.lastNameHint, label: AppTexts.lastName),
+                BasicTextField(
+                    controller: signUpController.lname,
+                    hint: AppTexts.lastNameHint,
+                    validator: (val) {
+                      if (val == null) {
+                        return "Enter Data";
+                      }
+                    },
+                    label: AppTexts.lastName),
+                BasicTextField(
+                    controller: signUpController.reltn,
+                    hint: AppTexts.relationshipHint,
+                    validator: (val) {
+                      if (val == null) {
+                        return "Enter Data";
+                      }
+                    },
+                    label: AppTexts.relationship),
+                BasicTextField(
+                  hint: AppTexts.percentageHint,
+                  validator: (val) {
+                    if (val == null) {
+                      return "Enter Data";
+                    }
+                  },
+                  label: AppTexts.percentage,
+                  controller: signUpController.percnt,
                 ),
-                Form(
-                  key: signUpController.relationFormKey ,
-                  child: BasicTextField(
-                      controller: signUpController.reltn,
-                      hint: AppTexts.relationshipHint,
-                      label: AppTexts.relationship),
-                ),
-                Form(
-                  key: signUpController.percntageFormKey,
-                  child: BasicTextField(
-                      hint: AppTexts.percentageHint, label: AppTexts.percentage,
-                    controller: signUpController.percnt,),
-                ),
-                  Spacer(
+                Spacer(
                   flex: 2,
                 ),
                 RecButton(
                     title: AppTexts.next,
                     onTap: () {
-                      signUpController.checkRegister1();
-                      Navigator.pushNamed(context, signUp2ScreenRoute);
-
+                      // signUpController.checkRegister1();
+                      if (signUpController.signup1FormKey.currentState!
+                          .validate()) {
+                        Get.toNamed(signUp2ScreenRoute);
+                      }
+                      //Navigator.pushNamed(context, signUp2ScreenRoute);
                     })
               ],
             ),
@@ -100,6 +129,4 @@ class SignUp1Screen extends StatelessWidget {
       ),
     );
   }
-
-
 }

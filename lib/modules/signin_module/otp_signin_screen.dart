@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lab_india/api_providers/api_client.dart';
 import 'package:lab_india/api_providers/provider/user_endpoint.dart';
 import 'package:lab_india/common_widgets/buttons/rec_button.dart';
 import 'package:lab_india/common_widgets/text_feilds/otp_Input.dart';
+import 'package:lab_india/controllers/signin_controller.dart';
+import 'package:lab_india/modules/nav_bar_module/bottom_nav_bar_screen.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../common_widgets/app_bars/center_title_appbar.dart';
@@ -13,16 +16,16 @@ import '../../routes/routing_constant.dart';
 
 class OtpLoginScreen extends StatelessWidget {
   OtpLoginScreen({Key? key}) : super(key: key);
+  SignInController signInController = Get.find();
+  
   List<TextEditingController> otpList = [
     TextEditingController(),
     TextEditingController(),
     TextEditingController(),
     TextEditingController(),
   ];
-  final _formKey = GlobalKey<FormState>();
-  String verifyCode = "";
-  String email = "";
-
+  final otpformKey = GlobalKey<FormState>();
+  String verifyCode = "";  
 
   // SignUpController _signUpController = Get.put(SignUpController());
 
@@ -40,7 +43,7 @@ class OtpLoginScreen extends StatelessWidget {
           title: '',
         ),
         body: Form(
-          key: _formKey,
+          key: otpformKey,
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 5.w),
             child: Column(
@@ -71,6 +74,7 @@ class OtpLoginScreen extends StatelessWidget {
                     title: AppTexts.confirm,
                     onTap: () {
                       _verifyCode();
+                      // Get.offAll(() => BottomNavBarScreen());
 
                       // Navigator.pushNamed(context, bottomNavBarScreenRoute);
                       // Navigator.pushNamedAndRemoveUntil(
@@ -115,14 +119,19 @@ class OtpLoginScreen extends StatelessWidget {
     );
   }
 
-   void _verifyCode() async{
-     if(_formKey.currentState!.validate()){
-      return;
-     }
-    _formKey.currentState!.save();
+  void _verifyCode() async {
+    
+    verifyCode = "";
+    for (var e in otpList) {
+      verifyCode += e.text;
+    }
+    Client client = Client();
+    UserEndPoint userEndPoint = UserEndPoint(client: client.init());
+    userEndPoint.verifyOTP(signInController.email.text, verifyCode);
 
-       Client client = Client();
-       UserEndPoint userEndPoint = UserEndPoint(client: client.init());
-        userEndPoint.verifyOTP(email, verifyCode );
+    //  if(otpformKey.currentState!.validate()){
+    //   return;
+    //  }
+    // otpformKey.currentState!.save();
   }
 }

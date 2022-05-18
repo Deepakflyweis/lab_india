@@ -7,7 +7,7 @@ import 'package:video_player/video_player.dart';
 import 'package:sizer/sizer.dart';
 
 class SplashScreen1 extends StatefulWidget {
-  SplashScreen1({Key? key}) : super(key: key);
+  const SplashScreen1({Key? key}) : super(key: key);
 
   @override
   State<SplashScreen1> createState() => _SplashScreen1State();

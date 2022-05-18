@@ -17,9 +17,8 @@ import '../../constants/app_texts.dart';
 import 'package:get/get.dart';
 
 class SignUp2Screen extends StatelessWidget {
-
-    SignUp2Screen({Key? key}) : super(key: key);
-    SignUpController signUpController= Get.find();
+  SignUp2Screen({Key? key}) : super(key: key);
+  SignUpController signUpController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +31,7 @@ class SignUp2Screen extends StatelessWidget {
           title: AppTexts.signUp,
         ),
         body: Form(
-          key: signUpController.signup2FormKey ,
+          key: signUpController.signup2FormKey,
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 5.w),
             child: Column(
@@ -46,14 +45,27 @@ class SignUp2Screen extends StatelessWidget {
                   label: AppTexts.numberOfChildren,
                 ),
                 BasicTextField(
-                  controller: signUpController.childname,
-                    hint: AppTexts.childNameHint, label: AppTexts.childName),
+                    controller: signUpController.childname,
+                    validator: (val) {
+                      if (val == null) {
+                        return "Enter Data";
+                      }
+                    },
+                    hint: AppTexts.childNameHint,
+                    label: AppTexts.childName),
                 BasicTextField(
-                  controller: signUpController.childage,
-                    hint: AppTexts.childAgeHint, label: AppTexts.childAge),
+                    controller: signUpController.childage,
+                    validator: (val) {
+                      if (val == null) {
+                        return "Enter Data";
+                      }
+                    },
+                    hint: AppTexts.childAgeHint,
+                    label: AppTexts.childAge),
                 CustomDropDown(
                   items: Gender.values
-                      .map((e) => DropdownMenuItem(value: e, child: Text(e.name)))
+                      .map((e) =>
+                          DropdownMenuItem(value: e, child: Text(e.name)))
                       .toList(),
                   onChanged: (val) {},
                   label: AppTexts.childGender,
@@ -64,8 +76,10 @@ class SignUp2Screen extends StatelessWidget {
                 RecButton(
                     title: AppTexts.next,
                     onTap: () {
-                     signUpController.checkRegister2();
-                     Navigator.pushNamed(context, signUp3ScreenRoute);
+                      if (signUpController.signup2FormKey.currentState!
+                          .validate()) {
+                        Get.toNamed(signUp3ScreenRoute);
+                      }
                       // }
                     })
               ],

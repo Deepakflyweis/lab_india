@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:lab_india/common_widgets/buttons/small_rec_button.dart';
 import 'package:lab_india/constants/app_colors.dart';
 import 'package:lab_india/constants/app_texts.dart';
@@ -13,7 +14,8 @@ import '../../../../../../common_widgets/app_bars/auto_leading_appbar.dart';
 import '../../../../../../common_widgets/buttons/rec_button.dart';
 import '../../../../../../constants/app_text_styles.dart';
 import '../story_2/story_2_screen.dart';
-import 'package:just_audio/just_audio.dart';
+
+
 
 class Story1Page extends GetView<ViewStoryModel> with WidgetsBindingObserver{
    Story1Page({Key? key}) : super(key: key);
@@ -22,7 +24,8 @@ class Story1Page extends GetView<ViewStoryModel> with WidgetsBindingObserver{
    ViewStoryController viewStoryController = Get.put(ViewStoryController());
   // TrendingStoryController _trendingStoryController = Get.find();
 
-   late AudioPlayer player;
+     AudioPlayer player = AudioPlayer();
+
 
 
    @override
@@ -64,15 +67,14 @@ class Story1Page extends GetView<ViewStoryModel> with WidgetsBindingObserver{
                           width: double.infinity,
                           fit: BoxFit.cover,
                           errorBuilder: ((context, error, stackTrace) => Container(
+                            height: 100,
                             decoration: BoxDecoration(
                               color: AppColors.grey400,
                               borderRadius: BorderRadius.circular(4.sp),
                             ),
                             child: Center(
-                                child: Text(
-                                  error.toString(),
-                                  style: AppTextStyles.black12,
-                                )),
+                                child:Image.asset("assets/images/sb.jpg",fit: BoxFit.cover,)
+                            ),
                           )),
                         ),
 
@@ -100,6 +102,7 @@ class Story1Page extends GetView<ViewStoryModel> with WidgetsBindingObserver{
                     padding:  EdgeInsets.only(left: 0.w),
                     child: GestureDetector(
                       onTap: () async{
+                        print("defefrf");
                         await player.setUrl(storydetails.storyAudio);
                         player.play();
                     },

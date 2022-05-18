@@ -37,14 +37,15 @@ class MyApp extends StatelessWidget {
             primarySwatch: AppColors.primarySwatch,
           ),
         ),
-        // onGenerateRoute: routes.onGenerateRoute,
+
+        onGenerateRoute: routes.onGenerateRoute,
         initialRoute: splashScreenRoute,
         onUnknownRoute: (settings) => MaterialPageRoute(
             builder: (context) => UndefinedRouteView(name: settings.name!)),
 
 
         // routes: {
-        //   "/": (context) => HomeScreen(),
+        //   "/": (context) => EnterEmailOrMobileScreen(),
         // },
 
       );

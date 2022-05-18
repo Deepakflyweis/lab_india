@@ -21,10 +21,12 @@ class AddRatingProvider{
           // return addRatingModelFromJson(jsonEncode(response.data["data"]["rating"]));
         }
         else{
+          g.Get.to(() => BottomNavBarScreen());
           return Future.error(response.data["error"]);
         }
 
       }on DioError catch (e) {
+        g.Get.to(() => BottomNavBarScreen());
         print(e.response!.data);
         return Future.error(e.message);
       }

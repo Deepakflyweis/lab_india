@@ -7,7 +7,7 @@ import 'package:lab_india/routes/routing_constant.dart';
 import '../navigator_keys.dart';
 
 class SubscriptionsNavigator extends StatelessWidget {
-  SubscriptionsNavigator({Key? key}) : super(key: key);
+  const SubscriptionsNavigator({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

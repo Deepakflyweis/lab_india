@@ -13,7 +13,7 @@ class ProfileScreen extends StatelessWidget {
   final mob = TextEditingController();
   final email = TextEditingController();
 
-   ProfileScreen({Key? key}) : super(key: key);
+  ProfileScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -48,12 +48,34 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
               BasicTextField(
-                  hint: AppTexts.firstNameHint + " " + AppTexts.lastNameHint,
-                  label: AppTexts.fullName, controller: name,),
+                validator: (val) {
+                  if (val == null) {
+                    return "Enter Data";
+                  }
+                },
+                hint: AppTexts.firstNameHint + " " + AppTexts.lastNameHint,
+                label: AppTexts.fullName,
+                controller: name,
+              ),
               BasicTextField(
-                  hint: AppTexts.mobileNumberHint,
-                  label: AppTexts.mobileNumber, controller: mob,),
-              BasicTextField(hint: AppTexts.emailHint, label: AppTexts.email,controller: email),
+                validator: (val) {
+                  if (val == null) {
+                    return "Enter Data";
+                  }
+                },
+                hint: AppTexts.mobileNumberHint,
+                label: AppTexts.mobileNumber,
+                controller: mob,
+              ),
+              BasicTextField(
+                  hint: AppTexts.emailHint,
+                  validator: (val) {
+                    if (val == null) {
+                      return "Enter Data";
+                    }
+                  },
+                  label: AppTexts.email,
+                  controller: email),
               SizedBox(
                 height: 5.h,
               ),

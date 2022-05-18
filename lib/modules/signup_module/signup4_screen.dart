@@ -10,10 +10,9 @@ import '../../common_widgets/app_bars/center_title_appbar.dart';
 import '../../constants/app_texts.dart';
 
 class SignUp4Screen extends StatelessWidget {
+  SignUp4Screen({Key? key}) : super(key: key);
 
-   SignUp4Screen({Key? key}) : super(key: key);
-
-   SignUpController signUpController = Get.find();
+  SignUpController signUpController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -32,22 +31,30 @@ class SignUp4Screen extends StatelessWidget {
             child: Column(
               children: [
                 Spacer(),
-                Form(
-                  key: signUpController.emailFormKey,
-                    child: BasicTextField(controller: signUpController.email,hint: AppTexts.emailHint, label: AppTexts.email)),
-                Form(
-                  key: signUpController.mobNoFormKey,
-                  child: BasicTextField(
-                      controller: signUpController.mob,
-                      hint: AppTexts.mobileNumberHint,
-                      label: AppTexts.mobileNumber),
-                ),
+                BasicTextField(
+                    controller: signUpController.email,
+                    validator: (val) {
+                      if (val == null) {
+                        return "Enter Data";
+                      }
+                    },
+                    hint: AppTexts.emailHint,
+                    label: AppTexts.email),
+                BasicTextField(
+                    controller: signUpController.mob,
+                    validator: (val) {
+                      if (val == null) {
+                        return "Enter Data";
+                      }
+                    },
+                    hint: AppTexts.mobileNumberHint,
+                    label: AppTexts.mobileNumber),
                 Spacer(),
                 RecButton(
                     title: AppTexts.next,
                     onTap: () {
                       signUpController.checkRegister4();
-                        //Navigator.pushNamed(context, otpSignInScreenRoute);
+                      //Navigator.pushNamed(context, otpSignInScreenRoute);
                     })
               ],
             ),

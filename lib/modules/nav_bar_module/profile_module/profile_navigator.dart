@@ -7,7 +7,7 @@ import 'package:lab_india/modules/nav_bar_module/profile_module/profile_screen.d
 import 'package:lab_india/routes/routing_constant.dart';
 
 class ProfileNavigator extends StatelessWidget {
-  ProfileNavigator({Key? key}) : super(key: key);
+  const ProfileNavigator({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

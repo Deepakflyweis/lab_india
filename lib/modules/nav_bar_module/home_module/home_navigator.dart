@@ -5,7 +5,7 @@ import 'package:lab_india/modules/nav_bar_module/navigator_keys.dart';
 import 'package:lab_india/routes/routing_constant.dart';
 
 class HomeNavigator extends StatelessWidget {
-  HomeNavigator({Key? key}) : super(key: key);
+  const HomeNavigator({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

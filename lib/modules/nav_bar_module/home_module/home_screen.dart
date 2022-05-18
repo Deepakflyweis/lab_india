@@ -19,9 +19,9 @@ import 'package:sizer/sizer.dart';
 class HomeScreen extends GetView{
     HomeScreen({Key? key}) : super(key: key);
 
-    CategoryController _categorycontrollers = Get.put(CategoryController());
-    TrendingController _trendingController = Get.put(TrendingController());
-    LatestController _latestController = Get.put(LatestController());
+    final CategoryController _categorycontrollers = Get.put(CategoryController());
+    final TrendingController _trendingController = Get.put(TrendingController());
+    final LatestController _latestController = Get.put(LatestController());
 
 
 
@@ -29,7 +29,7 @@ class HomeScreen extends GetView{
     @override
     Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AutoLeadingAppBar(title: AppTexts.dashboard),
+      appBar: AutoLeadingAppBar(title: " "),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 5.w),
         child: SingleChildScrollView(
@@ -94,10 +94,8 @@ class HomeScreen extends GetView{
 
                             child: Image.network(
                               catstate[index].categoryImg,
-                              errorBuilder: (context, Object, StackTrace) => const Center(
-                                child: Icon(
-                                  Icons.image,
-                                ),
+                              errorBuilder: (context, Object, StackTrace) =>   Center(
+                                child: Image.asset("assets/images/dd.jpg") ,
                               ),
                             ),
                           );
@@ -145,7 +143,7 @@ class HomeScreen extends GetView{
                                 errorBuilder: (context,_,__)=>Container(
                                   height: 100,
                                   color: Colors.grey.shade200,
-                                  child: const Text("No Image"),
+                                  child: Image.asset("assets/images/gf.jpg"),
                                 ),
                               ),
                             ),
@@ -201,7 +199,7 @@ class HomeScreen extends GetView{
                                     errorBuilder: (context,_,__)=>Container(
                                       height: 100,
                                       color: Colors.grey.shade200,
-                                      child: const Text("No Image"),
+                                      child: Image.asset("assets/images/gfm.jpg"),
                                     ),
                                   ),
                                 ),

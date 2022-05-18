@@ -10,14 +10,17 @@ class BasicTextField extends StatelessWidget {
     required this.hint,
     required this.label,
     required this.controller,
-
+    required this.validator
   }) : super(key: key);
   final String label;
   final String hint;
   final TextEditingController controller;
+ final String? Function(String?) validator;
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      controller: controller,
+      validator: validator,
       decoration: InputDecoration(
           floatingLabelBehavior: FloatingLabelBehavior.always,
           enabledBorder: UnderlineInputBorder(
@@ -28,6 +31,7 @@ class BasicTextField extends StatelessWidget {
               borderSide: BorderSide(color: AppColors.grey400)),
           labelText: label,
           labelStyle: TextStyle(color: AppColors.grey400),
+           hintStyle: TextStyle(color: AppColors.grey200),
           hintText: hint),
     );
   }

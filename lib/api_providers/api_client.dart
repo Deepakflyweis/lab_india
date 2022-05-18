@@ -2,6 +2,7 @@
  import 'package:dio/dio.dart';
 
 class Client{
+  static String token = "";
   Dio init() {
     Dio _dio = Dio();
     _dio.interceptors.add(ApiInterceptors());
@@ -13,17 +14,10 @@ class Client{
  class ApiInterceptors extends Interceptor {
    @override
    void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-
-     return super.onRequest(options, handler);
-   }
-   @override
-   void onResponse(Response response, ResponseInterceptorHandler handler) {
-     return super.onResponse(response, handler);
-   }
-   @override
-   void onError(DioError err, ErrorInterceptorHandler handler) {
-
-     return super.onError(err, handler);
+       super.onRequest(options, handler);
+         if (Client.token != "") {
+           options.headers["Authorization"] = "Bearer ${Client.token}";
+         }
    }
 
  }

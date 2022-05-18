@@ -12,7 +12,7 @@ import '../story_screens/story1/story_1_page.dart';
 class StoryInfo extends GetView {
    StoryInfo({Key? key}) : super(key: key);
 
-  ViewStoryController _viewStoryController = Get.find();
+  final ViewStoryController _viewStoryController = Get.find();
 
   @override
   Widget build(BuildContext context) {

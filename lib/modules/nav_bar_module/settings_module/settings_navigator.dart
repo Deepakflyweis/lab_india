@@ -6,7 +6,7 @@ import 'package:lab_india/modules/nav_bar_module/settings_module/settings_screen
 import 'package:lab_india/routes/routing_constant.dart';
 
 class SettingsNavigator extends StatelessWidget {
-  SettingsNavigator({Key? key}) : super(key: key);
+  const SettingsNavigator({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
