@@ -70,38 +70,72 @@ class HomeScreen extends GetView{
               ),
               _categorycontrollers.obx(
                     (catstate) => SizedBox(
-                  height: 20.h,
-                      child: CarouselSlider.builder(
-                        itemCount: catstate!.length,
-                        options: CarouselOptions(
-                            autoPlay: true,
-                            enlargeCenterPage: true,
-                            aspectRatio: 16.5 / 4),
-                        itemBuilder: (context, index, i) {
-                          return GestureDetector(
-                            onTap: (){
-
-                             /* viewStoryController.id = catstate[index].id;
-                              viewStoryController.callGetStoryApi();*/
-
-                              //Navigator.push(context, MaterialPageRoute(builder: (context)=>Story1Page()));
-
-
-                              // Get.toNamed(
-                              //   storyDetailsScreenRoute,
-                              // );
-                            },
-
-                            child: Image.network(
-                              catstate[index].categoryImg,
-                              errorBuilder: (context, Object, StackTrace) =>   Center(
-                                child: Image.asset("assets/images/dd.jpg") ,
+                    
+                  height: 25.h,
+                      child: ListView.builder(
+                         itemCount: catstate!.length,
+                         shrinkWrap: true,
+                         scrollDirection: Axis.horizontal,
+                        itemBuilder: ((context, index) {
+                          return Padding(
+                            padding: EdgeInsets.all(10),
+                            child: Container(
+                              height: 25.h,
+                              width: 45.w,
+                              padding: EdgeInsets.only(left: 10),
+                              child: Column(
+                                children: [
+                                  Image.network(
+                                  catstate[index].categoryImg,
+                                  height: 12.h,
+                                  width: 45.w,
+                                  errorBuilder: (context, Object, StackTrace) =>   Center(
+                                    child: Image.asset("assets/images/dd.jpg") ,
+                               ),
+                              ),
+                             ]
                               ),
                             ),
-                          );
-                        },
-                      ),
+                            
+                            );
+                          
+                        })
+                      
+                      //  CarouselSlider.builder(
+                      //   itemCount: catstate!.length,
+
+                      //   options: CarouselOptions(
+                      //       // autoPlay: false,
+                      //       // viewportFraction: 1,
+                      //       //   enlargeCenterPage: false,
+                      //      aspectRatio: 16 / 9
+                      //       ),
+                      //   itemBuilder: (context, index, i) {
+                      //     return GestureDetector(
+                      //       onTap: (){
+
+                      //        /* viewStoryController.id = catstate[index].id;
+                      //         viewStoryController.callGetStoryApi();*/
+
+                      //         //Navigator.push(context, MaterialPageRoute(builder: (context)=>Story1Page()));
+
+
+                      //         // Get.toNamed(
+                      //         //   storyDetailsScreenRoute,
+                      //         // );
+                      //       },
+
+                      //       child: Image.network(
+                      //         catstate[index].categoryImg,
+                      //         errorBuilder: (context, Object, StackTrace) =>   Center(
+                      //           child: Image.asset("assets/images/dd.jpg") ,
+                      //         ),
+                      //       ),
+                      //     );
+                      //   },
+                      // ),
                 ),
+              ),
               ),
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 1.h),
@@ -112,47 +146,98 @@ class HomeScreen extends GetView{
               ),
               _trendingController.obx(
                 (trendstate) => SizedBox(
-                  height: 20.h,
-                  child: CarouselSlider.builder(
-                    itemCount: trendstate!.length,
-                    options: CarouselOptions(
-                        autoPlay: true,
-                        enlargeCenterPage: true,
-                        aspectRatio: 16.5 / 4),
-                    itemBuilder: (context, snapshot, i) {
-                      return Column(
-                        children: [
-                          Expanded(
-                            child: GestureDetector(
-                              onTap: (){
+                  height: 25.h,
+                  child: ListView.builder( 
+                     itemCount: trendstate!.length,
+                         shrinkWrap: true,
+                         scrollDirection: Axis.horizontal,
+                        itemBuilder: ((context, snapshot) {
+                          return Padding(
+                            padding: EdgeInsets.all(10),
+                            child: Container(
+                              height: 25.h,
+                              width: 45.w,
+                              padding: EdgeInsets.only(left: 10),
+                              child: Column(
+                                children: [
+                                  Expanded(
+                                    child: Image.network(
+                                      trendstate[snapshot].trendingImg ,
+                                    height: 12.h,
+                                    width: 45.w,
+                                    errorBuilder: (context, Object, StackTrace) =>   Center(
+                                      child: Image.asset("assets/images/gf.jpg") ,
+                                  ),
+                                   ),
+                                  ),
+                                  Text(trendstate[snapshot].trending),
 
-                                // Get.toNamed(storyScreenRoute,
-                                //     arguments: trendstate[snapshot].storyId);
+                              Center(
+                                child: InkWell(
+                                  onTap: () {
+                                    
+                                    // Get.toNamed(storyScreenRoute,
+                  //               //     arguments: trendstate[snapshot].storyId);
+                  //              /*viewStoryController.id = trendstate[snapshot].storyId;
+                  //               viewStoryController.callGetStoryApi();*/
+                               Get.to(()=>Story1Page(),arguments: trendstate[snapshot].storyId);
 
-                                /*viewStoryController.id = trendstate[snapshot].storyId;
-                                viewStoryController.callGetStoryApi();*/
-
-                                Get.to(()=>Story1Page(),arguments: trendstate[snapshot].storyId);
-
-                               // Navigator.push(context, MaterialPageRoute(builder: (context)=>Story1Page()));
-
-                              },
-                              child: Image.network(
-                               trendstate[snapshot].trendingImg ,
-                                fit: BoxFit.cover,
-                                errorBuilder: (context,_,__)=>Container(
-                                  height: 100,
-                                  color: Colors.grey.shade200,
-                                  child: Image.asset("assets/images/gf.jpg"),
-                                ),
+                  //              // Navigator.push(context, MaterialPageRoute(builder: (context)=>Story1Page()));
+                                  },
+                                  child: Container(
+                                    alignment: Alignment.center,
+                                    width: 25.w,
+                                    height: 5.h,
+                                    color: Color(0xff962CFF) ,
+                                    )),)
+                             ]
                               ),
                             ),
-                          ),
-                          Text(trendstate[snapshot].trending),
-                        ],
-                      );
-                    },
-                  ),
+                            
+                            );
+                        })
+                  
+                  )
+                  // CarouselSlider.builder(
+                  //   itemCount: trendstate!.length,
+                  //   options: CarouselOptions(
+                  //       autoPlay: false,
+                  //       enlargeCenterPage: true,
+                  //       aspectRatio: 16.5 / 4),
+                  //   itemBuilder: (context, snapshot, i) {
+                  //     return Column(
+                  //       children: [
+                  //         Expanded(
+                  //           child: GestureDetector(
+                  //             onTap: (){
+
+                  //               // Get.toNamed(storyScreenRoute,
+                  //               //     arguments: trendstate[snapshot].storyId);
+
+                  //               /*viewStoryController.id = trendstate[snapshot].storyId;
+                  //               viewStoryController.callGetStoryApi();*/
+
+                  //               Get.to(()=>Story1Page(),arguments: trendstate[snapshot].storyId);
+
+                  //              // Navigator.push(context, MaterialPageRoute(builder: (context)=>Story1Page()));
+
+                  //             },
+                  //             child: Image.network(
+                  //              trendstate[snapshot].trendingImg ,
+                  //               fit: BoxFit.cover,
+                  //               errorBuilder: (context,_,__)=>Container(
+                  //                 height: 100,
+                  //                 color: Colors.grey.shade200,
+                  //                 child: Image.asset("assets/images/gf.jpg"),
+                  //               ),
+                  //             ),
+                  //           ),
+                  //         ),
+                  //         Text(trendstate[snapshot].trending),
+                  //       ],
+                  //     );
+                  //   },
+                  // ),
                 ),
                   onError: (err)=>Center(child: Text(err!)),
                   onEmpty: Center(child: Text("No Data"),)
@@ -170,7 +255,7 @@ class HomeScreen extends GetView{
                       child: CarouselSlider.builder(
                         itemCount: lateststate!.length,
                         options: CarouselOptions(
-                            autoPlay: true,
+                            autoPlay: false,
                             enlargeCenterPage: true,
                             aspectRatio: 16.5 / 4),
                         itemBuilder: (context, index, i) {

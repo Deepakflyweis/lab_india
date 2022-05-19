@@ -53,9 +53,9 @@ class EnterEmailOrMobileScreen extends StatelessWidget {
                 RecButton(
                     title: AppTexts.signIn,
                     onTap: () {
-                      signInController.sendotp();
+                      // signInController.sendotp();
 
-                      // Navigator.pushNamed(context, bottomNavBarScreenRoute);
+                      Navigator.pushNamed(context, bottomNavBarScreenRoute);
                       // Navigator.pushNamedAndRemoveUntil(
                       //     context, bottomNavBarScreenRoute, (route) => false);
 

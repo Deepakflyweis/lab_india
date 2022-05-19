@@ -103,7 +103,7 @@ class Story1Page extends GetView<ViewStoryModel> with WidgetsBindingObserver{
                     child: GestureDetector(
                       onTap: () async{
                         print("defefrf");
-                        await player.setUrl(storydetails.storyAudio);
+                        await player.setUrl("https://github.com/Deepakflyweis/sample_audio/blob/main/Ek_Purani_Kahani_Baarish_Full_St_(getmp3.pro).mp3");
                         player.play();
                     },
                       child: Image.asset(
