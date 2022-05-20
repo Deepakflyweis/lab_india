@@ -73,7 +73,7 @@ class Story1Page extends GetView<ViewStoryModel> with WidgetsBindingObserver{
                               borderRadius: BorderRadius.circular(4.sp),
                             ),
                             child: Center(
-                                child:Image.asset("assets/images/sb.jpg",fit: BoxFit.cover,)
+                                child:Image.asset("assets/images/sb.jpg",fit: BoxFit.fill,)
                             ),
                           )),
                         ),

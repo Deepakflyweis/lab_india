@@ -43,8 +43,8 @@ class HomeScreen extends GetView{
                         padding: EdgeInsets.all(4.sp),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(6.sp),
-                          child: Image.network(
-                            'https://i.graphicmama.com/blog/wp-content/uploads/2018/02/21095725/Children-Book-Illustrations-Breathtaking-Examples-for-Inspiration.jpg',
+                          child: Image.asset(
+                            'assets/images/adds.png',
                             errorBuilder: ((context, error, stackTrace) =>
                                 Container(
                                   decoration: BoxDecoration(
@@ -70,29 +70,65 @@ class HomeScreen extends GetView{
               ),
               _categorycontrollers.obx(
                     (catstate) => SizedBox(
-                    
-                  height: 25.h,
+                      height: 25.h,
                       child: ListView.builder(
                          itemCount: catstate!.length,
                          shrinkWrap: true,
                          scrollDirection: Axis.horizontal,
                         itemBuilder: ((context, index) {
                           return Padding(
-                            padding: EdgeInsets.all(10),
+                            padding: const EdgeInsets.all(10),
                             child: Container(
                               height: 25.h,
                               width: 45.w,
-                              padding: EdgeInsets.only(left: 10),
+                              padding: const EdgeInsets.only(left: 10),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5),
+                                color: Colors.white,
+                                boxShadow: const [
+                                   BoxShadow(
+                                    color: Colors.grey,
+                                    offset: Offset(2.0,2.0),
+                                    blurRadius: 5,
+                                    spreadRadius: 1,
+                                  )
+                                ]
+
+                              ),
+
                               child: Column(
                                 children: [
                                   Image.network(
                                   catstate[index].categoryImg,
                                   height: 12.h,
                                   width: 45.w,
+                                  fit: BoxFit.fill,
                                   errorBuilder: (context, Object, StackTrace) =>   Center(
-                                    child: Image.asset("assets/images/dd.jpg") ,
+                                    child: Image.asset("assets/images/dd.jpg",fit: BoxFit.fill),
                                ),
                               ),
+                               Center(
+                                child: InkWell(
+                                  onTap: () {
+
+                                //  Get.to(()=>Story1Page(),arguments: catstate[index].category);
+                                 
+                                  },
+                                  child: Container(
+                                   decoration: BoxDecoration(
+                                     borderRadius: BorderRadius.circular(6),
+                                     color: Color(0xff962CFF) ,
+                                   ),
+                                    alignment: Alignment.center,
+                                    width: 20.w,
+                                    height: 4.h,
+                                    
+                                    child: Text("Read",style: TextStyle(color: Colors.white,fontSize: 14,fontWeight: FontWeight.w500)),
+                                    )
+                                    ),),
+                                    
+
+
                              ]
                               ),
                             ),
@@ -158,6 +194,19 @@ class HomeScreen extends GetView{
                               height: 25.h,
                               width: 45.w,
                               padding: EdgeInsets.only(left: 10),
+                                decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5),
+                                color: Colors.white,
+                                boxShadow: const [
+                                   BoxShadow(
+                                    color: Colors.grey,
+                                    offset: Offset(2.0,2.0),
+                                    blurRadius: 5,
+                                    spreadRadius: 1,
+                                  )
+                                ]
+
+                              ),
                               child: Column(
                                 children: [
                                   Expanded(
@@ -165,8 +214,9 @@ class HomeScreen extends GetView{
                                       trendstate[snapshot].trendingImg ,
                                     height: 12.h,
                                     width: 45.w,
+                                    fit: BoxFit.fill,
                                     errorBuilder: (context, Object, StackTrace) =>   Center(
-                                      child: Image.asset("assets/images/gf.jpg") ,
+                                      child: Image.asset("assets/images/gf.jpg",fit: BoxFit.fill) ,
                                   ),
                                    ),
                                   ),
@@ -185,11 +235,18 @@ class HomeScreen extends GetView{
                   //              // Navigator.push(context, MaterialPageRoute(builder: (context)=>Story1Page()));
                                   },
                                   child: Container(
+                                   decoration: BoxDecoration(
+                                     borderRadius: BorderRadius.circular(6),
+                                     color: Color(0xff962CFF) ,
+                                   ),
                                     alignment: Alignment.center,
-                                    width: 25.w,
-                                    height: 5.h,
-                                    color: Color(0xff962CFF) ,
-                                    )),)
+                                    width: 20.w,
+                                    height: 4.h,
+                                    
+                                    child: Text("Read",style: TextStyle(color: Colors.white,fontSize: 14,fontWeight: FontWeight.w500)),
+                                    )
+                                    ),),
+                                    SizedBox(height: 5,)
                              ]
                               ),
                             ),
@@ -251,46 +308,68 @@ class HomeScreen extends GetView{
               ),
               _latestController.obx(
                     (lateststate) => SizedBox(
-                  height: 20.h,
-                      child: CarouselSlider.builder(
+                  height: 25.h,
+                      child: ListView.builder(
                         itemCount: lateststate!.length,
-                        options: CarouselOptions(
-                            autoPlay: false,
-                            enlargeCenterPage: true,
-                            aspectRatio: 16.5 / 4),
-                        itemBuilder: (context, index, i) {
-                          return Column(
-                            children: [
-                              Expanded(
-                                child: GestureDetector(
-                                  onTap: (){
+                       shrinkWrap: true,
+                         scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: EdgeInsets.all(10),
+                            child: Container(
+                              height: 25.h,
+                              width: 45.w,
+                              padding: EdgeInsets.only(left: 10),
+                                decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5),
+                                color: Colors.white,
+                                boxShadow: const [
+                                   BoxShadow(
+                                    color: Colors.grey,
+                                    offset: Offset(2.0,2.0),
+                                    blurRadius: 5,
+                                    spreadRadius: 1,
+                                  )
+                                ]
 
-                                    // Get.toNamed(storyScreenRoute,
-                                    //     arguments: lateststate[index].storyId);
-
-                                    /*viewStoryController.id = lateststate[index].storyId;
-                                    viewStoryController.callGetStoryApi();*/
-
-                                    Get.to(()=>Story1Page(),arguments: lateststate[index].storyId);
-
-                                    //  Navigator.push(context, MaterialPageRoute(builder: (context)=>Story1Page()));
-                                    // Get.toNamed(
-                                    //   storyDetailsScreenRoute,
-                                    // );
-                                  },
+                              ),
+                            child: Column(
+                              children: [
+                                Expanded(
                                   child: Image.network(
                                     lateststate[index].latestImg.toString(),
-                                    fit: BoxFit.cover,
-                                    errorBuilder: (context,_,__)=>Container(
-                                      height: 100,
-                                      color: Colors.grey.shade200,
-                                      child: Image.asset("assets/images/gfm.jpg"),
+                                    height: 12.h,
+                                    width: 45.w, 
+                                    fit: BoxFit.fill,                                   
+                                    errorBuilder: (context, Object, StackTrace)=>Center(                                  
+                                      child: Image.asset("assets/images/gfm.jpg",fit: BoxFit.fill),
                                     ),
                                   ),
                                 ),
-                              ),
-                              Text(lateststate[index].latest),
-                            ],
+                                Text(lateststate[index].latest),
+                                Center(
+                                  child: InkWell(
+                                    onTap: () {
+
+                                  Get.to(()=>Story1Page(),arguments: lateststate[index].storyId);
+
+                                    },
+                                    child: Container(
+                                     decoration: BoxDecoration(
+                                       borderRadius: BorderRadius.circular(6),
+                                       color: Color(0xff962CFF) ,
+                                     ),
+                                      alignment: Alignment.center,
+                                      width: 20.w,
+                                      height: 4.h,
+                                      
+                                      child: Text("Read",style: TextStyle(color: Colors.white,fontSize: 14,fontWeight: FontWeight.w500)),
+                                      )
+                                      ),),
+                                      SizedBox(height: 5,)
+                              ],
+                            ),
+                            )
                           );
                         },
                       ),
