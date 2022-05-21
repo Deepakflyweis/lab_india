@@ -4,17 +4,12 @@ import 'package:just_audio/just_audio.dart';
 import 'package:lab_india/common_widgets/buttons/small_rec_button.dart';
 import 'package:lab_india/constants/app_colors.dart';
 import 'package:lab_india/constants/app_texts.dart';
-import 'package:lab_india/controllers/trending_story_controller.dart';
 import 'package:lab_india/controllers/view_story_controller.dart';
 import 'package:lab_india/models/view_stories.dart';
 import 'package:lab_india/modules/nav_bar_module/home_module/rating_review/rating_review_screen.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../../../common_widgets/app_bars/auto_leading_appbar.dart';
-import '../../../../../../common_widgets/buttons/rec_button.dart';
-import '../../../../../../constants/app_text_styles.dart';
-import '../story_2/story_2_screen.dart';
-
 
 
 class Story1Page extends GetView<ViewStoryModel> with WidgetsBindingObserver{
@@ -31,7 +26,7 @@ class Story1Page extends GetView<ViewStoryModel> with WidgetsBindingObserver{
    @override
    void initState() {
      // super.initState();
-     player = AudioPlayer();
+    //  player = AudioPlayer();
    }
    @override
    void dispose() {
@@ -103,13 +98,39 @@ class Story1Page extends GetView<ViewStoryModel> with WidgetsBindingObserver{
                     child: GestureDetector(
                       onTap: () async{
                         print("defefrf");
-                        await player.setUrl("https://github.com/Deepakflyweis/sample_audio/blob/main/Ek_Purani_Kahani_Baarish_Full_St_(getmp3.pro).mp3");
-                        player.play();
-                    },
-                      child: Image.asset(
-                        "assets/icons/play_button.png",
-                        height: 4.h,
-                      ),
+                        // await player.setUrl("https://github.com/Deepakflyweis/sample_audio/blob/main/Ek_Purani_Kahani_Baarish_Full_St_(getmp3.pro).mp3");
+                        // player.play();
+
+                         if (viewStoryController.isPause.value) {
+                            viewStoryController.isPause.value = false;
+                            player.pause();
+                          } else {
+                            viewStoryController.isPause.value = true;
+                            //print(storydetails.storyAudio);
+                            var url = storydetails.storyAudio;
+                            await player.setUrl(url.trim());
+                            // await player.setUrl(
+                            //     "http://mern.online:4000/public/storyAudio/storyAudio1653044569570.mp3");
+                            player.play();
+                          }
+                        }, child: Obx(
+                          () {
+                            if (viewStoryController.isPause.value == true) {
+                              return Image.asset(
+                                "assets/images/Black_Pause.png",
+                                height: 4.h,
+                              );
+                            }
+                            return Image.asset("assets/icons/play_button.png",
+                                height: 4.h);
+                          },
+                        )
+
+                    // },
+                    //   child: Image.asset(
+                    //     "assets/icons/play_button.png",
+                    //     height: 4.h,
+                    //   ),
                     ),
                   )
                 ],
