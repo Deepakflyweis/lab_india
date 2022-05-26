@@ -43,8 +43,8 @@ class EnterEmailOrMobileScreen extends StatelessWidget {
                 BasicTextField(
                   label: AppTexts.email + '/' + AppTexts.mobileNumber,
                   validator: (val) {
-                    if (val == null) {
-                      return "Enter Data";
+                    if (val == "") {
+                      return "Please enter Your email id";
                     }
                   },
                   hint: AppTexts.emailHint,
@@ -53,9 +53,9 @@ class EnterEmailOrMobileScreen extends StatelessWidget {
                 RecButton(
                     title: AppTexts.signIn,
                     onTap: () {
-                      // signInController.sendotp();
+                      signInController.sendotp();
 
-                      Navigator.pushNamed(context, bottomNavBarScreenRoute);
+                        // Navigator.pushNamed(context, bottomNavBarScreenRoute);
                       // Navigator.pushNamedAndRemoveUntil(
                       //     context, bottomNavBarScreenRoute, (route) => false);
 

@@ -9,9 +9,14 @@ import 'package:sizer/sizer.dart';
 import '../../common_widgets/app_bars/center_title_appbar.dart';
 import '../../constants/app_texts.dart';
 
-class SignUp3Screen extends StatelessWidget {
+class SignUp3Screen extends StatefulWidget {
   SignUp3Screen({Key? key}) : super(key: key);
 
+  @override
+  State<SignUp3Screen> createState() => _SignUp3ScreenState();
+}
+
+class _SignUp3ScreenState extends State<SignUp3Screen> {
   SignUpController signUpController = Get.find();
 
   @override
@@ -21,6 +26,7 @@ class SignUp3Screen extends StatelessWidget {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
+          resizeToAvoidBottomInset: false,
         appBar: CenterTitleAppBar(
           title: AppTexts.signUp,
         ),
@@ -30,7 +36,8 @@ class SignUp3Screen extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 5.w),
             child: Column(
               children: [
-                Spacer(),
+                SizedBox(height: 2.h,),
+               
                 CustomDropDown(
                   items: ['India', 'America', 'China']
                       .map((e) => DropdownMenuItem(value: e, child: Text(e)))
@@ -41,8 +48,8 @@ class SignUp3Screen extends StatelessWidget {
                 BasicTextField(
                     controller: signUpController.city,
                     validator: (val) {
-                      if (val == null) {
-                        return "Enter Data";
+                      if (val == "") {
+                        return "Enter City";
                       }
                     },
                     hint: AppTexts.cityHint,
@@ -52,16 +59,16 @@ class SignUp3Screen extends StatelessWidget {
                   hint: AppTexts.stateHint,
                   label: AppTexts.state,
                   validator: (val) {
-                    if (val == null) {
-                      return "Enter Data";
+                    if (val == "") {
+                      return "Enter City";
                     }
                   },
                 ),
                 BasicTextField(
                     controller: signUpController.pincode,
                     validator: (val) {
-                      if (val == null) {
-                        return "Enter Data";
+                      if (val == "") {
+                        return "Enter pincode";
                       }
                     },
                     hint: AppTexts.pincodeHint,
@@ -69,8 +76,8 @@ class SignUp3Screen extends StatelessWidget {
                 BasicTextField(
                     controller: signUpController.street1,
                     validator: (val) {
-                      if (val == null) {
-                        return "Enter Data";
+                      if (val == "") {
+                        return "Enter street 1";
                       }
                     },
                     hint: AppTexts.street1Hint,
@@ -78,14 +85,14 @@ class SignUp3Screen extends StatelessWidget {
                 BasicTextField(
                     controller: signUpController.street2,
                     validator: (val) {
-                      if (val == null) {
-                        return "Enter Data";
+                      if (val ==  "") {
+                        return "Enter street 2";
                       }
                     },
                     hint: AppTexts.street2Hint,
                     label: AppTexts.street2),
                 Spacer(
-                  flex: 2,
+                  flex: 1,
                 ),
                 RecButton(
                     title: AppTexts.next,

@@ -3,12 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lab_india/common_widgets/buttons/rec_button.dart';
 import 'package:lab_india/constants/app_text_styles.dart';
 import 'package:lab_india/constants/app_texts.dart';
-import 'package:lab_india/modules/splash_module/cubit/image_index_cubit.dart';
-import 'package:lab_india/modules/splash_module/splash_screen1.dart';
+import 'package:lab_india/modules/splash_module/cubit/image_index_cubit.dart'; 
 import 'package:sizer/sizer.dart';
-import 'package:video_player/video_player.dart';
-
-import '../../constants/app_colors.dart';
+ 
 
 class SplashScreen3 extends StatefulWidget {
   const SplashScreen3({Key? key}) : super(key: key);

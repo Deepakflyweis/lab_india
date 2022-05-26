@@ -34,8 +34,8 @@ class SignUp4Screen extends StatelessWidget {
                 BasicTextField(
                     controller: signUpController.email,
                     validator: (val) {
-                      if (val == null) {
-                        return "Enter Data";
+                      if (val == "") {
+                        return "Enter Your email id";
                       }
                     },
                     hint: AppTexts.emailHint,
@@ -43,8 +43,8 @@ class SignUp4Screen extends StatelessWidget {
                 BasicTextField(
                     controller: signUpController.mob,
                     validator: (val) {
-                      if (val == null) {
-                        return "Enter Data";
+                      if (val == "") {
+                        return "Enter your mob";
                       }
                     },
                     hint: AppTexts.mobileNumberHint,

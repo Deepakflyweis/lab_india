@@ -18,6 +18,7 @@ import 'package:get/get.dart';
 
 class SignUp2Screen extends StatelessWidget {
   SignUp2Screen({Key? key}) : super(key: key);
+  
   SignUpController signUpController = Get.find();
 
   @override
@@ -47,8 +48,8 @@ class SignUp2Screen extends StatelessWidget {
                 BasicTextField(
                     controller: signUpController.childname,
                     validator: (val) {
-                      if (val == null) {
-                        return "Enter Data";
+                      if (val == "") {
+                        return "Enter child name";
                       }
                     },
                     hint: AppTexts.childNameHint,
@@ -56,8 +57,8 @@ class SignUp2Screen extends StatelessWidget {
                 BasicTextField(
                     controller: signUpController.childage,
                     validator: (val) {
-                      if (val == null) {
-                        return "Enter Data";
+                      if (val == "") {
+                        return "Enter child age";
                       }
                     },
                     hint: AppTexts.childAgeHint,

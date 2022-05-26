@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:lab_india/common_widgets/buttons/rec_button.dart';
 import 'package:lab_india/constants/app_texts.dart';
-import 'package:lab_india/modules/splash_module/splash_screen2.dart';
+ 
 import 'package:lab_india/routes/routing_constant.dart';
 import 'package:video_player/video_player.dart';
-import 'package:sizer/sizer.dart';
+ 
 
 class SplashScreen1 extends StatefulWidget {
   const SplashScreen1({Key? key}) : super(key: key);

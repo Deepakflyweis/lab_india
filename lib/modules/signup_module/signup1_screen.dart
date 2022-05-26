@@ -9,12 +9,13 @@ import 'package:lab_india/routes/routing_constant.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../common_widgets/app_bars/center_title_appbar.dart';
-import '../../constants/app_colors.dart';
+ 
 import '../../constants/app_text_styles.dart';
 import '../../constants/app_texts.dart';
 
 class SignUp1Screen extends StatelessWidget {
   SignUp1Screen({Key? key}) : super(key: key);
+
   SignUpController signUpController = Get.put(SignUpController());
 
   @override
@@ -34,36 +35,36 @@ class SignUp1Screen extends StatelessWidget {
             child: Column(
               children: [
                 const Spacer(),
-                GestureDetector(
-                    onTap: () => signUpController.showPicker(context),
-                    child: Stack(
-                      fit: StackFit.loose,
-                      children: [
-                        ClipOval(
-                          child: Obx(
-                            () => signUpController.image.value.path == ""
-                                ? Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Icon(Icons.image),
-                                  )
-                                : Image.file(
-                                    signUpController.image.value,
-                                    width: 25.w,
-                                    filterQuality: FilterQuality.high,
-                                    fit: BoxFit.cover,
-                                  ),
-                          ),
-                        ),
-                        Positioned(
-                            right: 0,
-                            child: Icon(
-                              Icons.add_circle,
-                              size: 25.sp,
-                              color: AppColors.primaryColor,
-                            )),
-                      ],
-                    )),
-                Spacer(),
+                // GestureDetector(
+                //     onTap: () => signUpController.showPicker(context),
+                //     child: Stack(
+                //       fit: StackFit.loose,
+                //       children: [
+                //         ClipOval(
+                //           child: Obx(
+                //             () => signUpController.image.value.path == ""
+                //                 ? Padding(
+                //                     padding: const EdgeInsets.all(8.0),
+                //                     child: Icon(Icons.image,size: 50,),
+                //                   )
+                //                 : Image.file(
+                //                     signUpController.image.value,
+                //                     width: 25.w,
+                //                     filterQuality: FilterQuality.high,
+                //                     fit: BoxFit.cover,
+                //                   ),
+                //           ),
+                //         ),
+                //         Positioned(
+                //             right: 0,
+                //             child: Icon(
+                //               Icons.add_circle,
+                //               size: 25.sp,
+                //               color: AppColors.primaryColor,
+                //             )),
+                //       ],
+                //     )),
+                // Spacer(),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -76,8 +77,8 @@ class SignUp1Screen extends StatelessWidget {
                   label: AppTexts.firstName,
                   controller: signUpController.fname,
                   validator: (val) {
-                    if (val == null) {
-                      return "Enter Data";
+                    if (val == "") {
+                      return "Enter First name";
                     }
                   },
                 ),
@@ -85,8 +86,8 @@ class SignUp1Screen extends StatelessWidget {
                     controller: signUpController.lname,
                     hint: AppTexts.lastNameHint,
                     validator: (val) {
-                      if (val == null) {
-                        return "Enter Data";
+                      if (val == "") {
+                        return "Enter Last name";
                       }
                     },
                     label: AppTexts.lastName),
@@ -94,16 +95,16 @@ class SignUp1Screen extends StatelessWidget {
                     controller: signUpController.reltn,
                     hint: AppTexts.relationshipHint,
                     validator: (val) {
-                      if (val == null) {
-                        return "Enter Data";
+                      if (val == "") {
+                        return "Enter Relationship";
                       }
                     },
                     label: AppTexts.relationship),
                 BasicTextField(
                   hint: AppTexts.percentageHint,
                   validator: (val) {
-                    if (val == null) {
-                      return "Enter Data";
+                    if (val == "") {
+                      return "Enter Percentage";
                     }
                   },
                   label: AppTexts.percentage,

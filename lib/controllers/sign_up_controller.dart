@@ -142,7 +142,7 @@ class SignUpController extends GetxController {
     Client register = Client();
     UserEndPoint authPoint = UserEndPoint(client: register.init());
     authPoint.getUserDetails(
-      imagePath: image.value.path,
+      // imagePath: image.value.path,
       fName: fname.text,
       street2: street2.text,
       relationship: reltn.text,

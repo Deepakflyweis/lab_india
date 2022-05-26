@@ -1,16 +1,16 @@
-import 'dart:convert';
+ 
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get_rx/get_rx.dart';
-import 'package:lab_india/api_providers/api_client.dart';
+ 
 import 'package:lab_india/helpers.dart';
 import 'package:lab_india/modules/nav_bar_module/bottom_nav_bar_screen.dart';
 import 'package:lab_india/modules/signin_module/otp_signin_screen.dart';
 import 'package:get/get.dart' as g;
 import 'package:lab_india/modules/signup_module/otp_signup_screen.dart';
-import 'package:get_storage/get_storage.dart';
+ 
 
 class UserEndPoint {
   Dio client;
@@ -18,7 +18,7 @@ class UserEndPoint {
   var isLoading = false.obs;
 
   getUserDetails({
-    required String imagePath,
+      String ? imagePath,
     required String fName,
     required String lName,
     required String relationship,
@@ -56,7 +56,7 @@ class UserEndPoint {
     // });
 
     var data = FormData.fromMap({
-      'myField': await MultipartFile.fromFile(imagePath),
+      // 'myField': await MultipartFile.fromFile(imagePath),
       'firstname': fName ,
       'lastname': lName,
       'relationship': relationship,
