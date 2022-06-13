@@ -21,92 +21,90 @@ class _SignUp3ScreenState extends State<SignUp3Screen> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        FocusScope.of(context).unfocus();
-      },
+    return SafeArea(
       child: Scaffold(
-          resizeToAvoidBottomInset: false,
-        appBar: CenterTitleAppBar(
-          title: AppTexts.signUp,
-        ),
-        body: Form(
-          key: signUpController.signup3FormKey,
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 5.w),
-            child: Column(
-              children: [
-                SizedBox(height: 2.h,),
-               
-                CustomDropDown(
-                  items: ['India', 'America', 'China']
-                      .map((e) => DropdownMenuItem(value: e, child: Text(e)))
-                      .toList(),
-                  onChanged: (val) {},
-                  label: AppTexts.country,
+             resizeToAvoidBottomInset: false,
+          appBar: CenterTitleAppBar(
+            title: AppTexts.signUp,
+          ),
+          body: SingleChildScrollView(
+            child: Form(
+              key: signUpController.signup3FormKey,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 5.w),
+                child: Column(
+                  children: [
+                    SizedBox(height: 2.h,),                   
+                    CustomDropDown(
+                      items: ['India', 'America', 'China']
+                          .map((e) => DropdownMenuItem(value: e, child: Text(e)))
+                          .toList(),
+                      onChanged: (val) {},
+                      label: AppTexts.country,
+                    ),
+                    BasicTextField(
+                        controller: signUpController.city,
+                        validator: (val) {
+                          if (val == "") {
+                            return "Enter City";
+                          }
+                        },
+                        hint: AppTexts.cityHint,
+                        label: AppTexts.city),
+                    BasicTextField(
+                      controller: signUpController.state,
+                      hint: AppTexts.stateHint,
+                      label: AppTexts.state,
+                      validator: (val) {
+                        if (val == "") {
+                          return "Enter City";
+                        }
+                      },
+                    ),
+                    BasicTextField(
+                        controller: signUpController.pincode,
+                        validator: (val) {
+                          if (val == "") {
+                            return "Enter pincode";
+                          }
+                        },
+                        hint: AppTexts.pincodeHint,
+                        label: AppTexts.pincode),
+                    BasicTextField(
+                        controller: signUpController.street1,
+                        validator: (val) {
+                          if (val == "") {
+                            return "Enter street 1";
+                          }
+                        },
+                        hint: AppTexts.street1Hint,
+                        label: AppTexts.street1),
+                    BasicTextField(
+                        controller: signUpController.street2,
+                        validator: (val) {
+                          if (val ==  "") {
+                            return "Enter street 2";
+                          }
+                        },
+                        hint: AppTexts.street2Hint,
+                        label: AppTexts.street2),
+                   
+                    RecButton(
+                        title: AppTexts.next,
+                        onTap: () {
+                          if (signUpController.signup3FormKey.currentState!
+                              .validate()) {
+                            Get.toNamed(signUp4ScreenRoute);
+                          }
+          //                      Navigator.pushNamed(context, signUp4ScreenRoute);
+                        }),
+                         SizedBox(height: 30.h,),
+                  ],
                 ),
-                BasicTextField(
-                    controller: signUpController.city,
-                    validator: (val) {
-                      if (val == "") {
-                        return "Enter City";
-                      }
-                    },
-                    hint: AppTexts.cityHint,
-                    label: AppTexts.city),
-                BasicTextField(
-                  controller: signUpController.state,
-                  hint: AppTexts.stateHint,
-                  label: AppTexts.state,
-                  validator: (val) {
-                    if (val == "") {
-                      return "Enter City";
-                    }
-                  },
-                ),
-                BasicTextField(
-                    controller: signUpController.pincode,
-                    validator: (val) {
-                      if (val == "") {
-                        return "Enter pincode";
-                      }
-                    },
-                    hint: AppTexts.pincodeHint,
-                    label: AppTexts.pincode),
-                BasicTextField(
-                    controller: signUpController.street1,
-                    validator: (val) {
-                      if (val == "") {
-                        return "Enter street 1";
-                      }
-                    },
-                    hint: AppTexts.street1Hint,
-                    label: AppTexts.street1),
-                BasicTextField(
-                    controller: signUpController.street2,
-                    validator: (val) {
-                      if (val ==  "") {
-                        return "Enter street 2";
-                      }
-                    },
-                    hint: AppTexts.street2Hint,
-                    label: AppTexts.street2),
-                Spacer(
-                  flex: 1,
-                ),
-                RecButton(
-                    title: AppTexts.next,
-                    onTap: () {
-                      if (signUpController.signup3FormKey.currentState!
-                          .validate()) {
-                        Get.toNamed(signUp4ScreenRoute);
-                      }
-//                      Navigator.pushNamed(context, signUp4ScreenRoute);
-                    })
-              ],
+              ),
             ),
           ),
-        ),
+        
       ),
     );
   }
